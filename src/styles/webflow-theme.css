@@ -2840,7 +2840,10 @@ blockquote {
 }
 
 .home-hero-area {
+  position: relative;
+  overflow: hidden;
   height: 100vh;
+  min-height: 640px;
   padding-bottom: var(--_sizes---sizes--spacers--spacer-xl);
   flex-flow: column;
   justify-content: space-between;
