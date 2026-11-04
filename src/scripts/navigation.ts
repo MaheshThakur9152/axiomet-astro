@@ -1,12 +1,12 @@
 /**
- * Navigation Menu Interactions
+ * Navigation Menu Interactions for Webflow Navbar Component
  */
 export function initNavigation(): void {
-  const menuButtons = document.querySelectorAll<HTMLButtonElement>('.menu-button, [data-nav-toggle]');
-  const menuPanel = document.querySelector<HTMLElement>('.nav-menu-panel-container');
-  const navElement = document.querySelector<HTMLElement>('.navber');
+  const menuButtons = document.querySelectorAll<HTMLElement>('.menu-button.w-nav-button');
+  const navMenu = document.querySelector<HTMLElement>('.nav-menu.w-nav-menu');
+  const navElement = document.querySelector<HTMLElement>('.navber.w-nav');
 
-  if (!menuButtons.length || !menuPanel) return;
+  if (!menuButtons.length || !navMenu) return;
 
   let isOpen = false;
 
@@ -15,38 +15,28 @@ export function initNavigation(): void {
     menuButtons.forEach((btn) => {
       btn.setAttribute('aria-expanded', String(isOpen));
       if (isOpen) {
-        btn.classList.add('w--open', 'is-active');
+        btn.classList.add('w--open');
       } else {
-        btn.classList.remove('w--open', 'is-active');
+        btn.classList.remove('w--open');
       }
 
-      // Update Menu / Close text if present
       const menuText = btn.querySelector('.nav-menu-text');
       if (menuText) {
         menuText.textContent = isOpen ? 'Close' : 'Menu';
       }
 
-      // Update 4-dot indicator styles
       const dots = btn.querySelectorAll<HTMLElement>('.menu-dot');
       dots.forEach((dot) => {
-        if (isOpen) {
-          dot.style.backgroundColor = '#df1001';
-        } else {
-          dot.style.backgroundColor = '#ffffff';
-        }
+        dot.style.backgroundColor = isOpen ? '#df1001' : '#ffffff';
       });
     });
 
     if (isOpen) {
-      menuPanel.style.maxHeight = '850px';
-      menuPanel.style.opacity = '1';
-      menuPanel.style.visibility = 'visible';
-      menuPanel.style.paddingBottom = '2rem';
+      navMenu.classList.add('w--open');
+      navMenu.style.display = 'block';
     } else {
-      menuPanel.style.maxHeight = '0px';
-      menuPanel.style.opacity = '0';
-      menuPanel.style.visibility = 'hidden';
-      menuPanel.style.paddingBottom = '0px';
+      navMenu.classList.remove('w--open');
+      navMenu.style.display = 'none';
     }
   };
 
@@ -72,7 +62,7 @@ export function initNavigation(): void {
   });
 
   // Close menu when clicking a navigation link
-  const navLinks = menuPanel.querySelectorAll<HTMLAnchorElement>('a');
+  const navLinks = navMenu.querySelectorAll<HTMLAnchorElement>('a');
   navLinks.forEach((link) => {
     link.addEventListener('click', () => {
       setMenuState(false);
@@ -80,7 +70,6 @@ export function initNavigation(): void {
   });
 }
 
-// Auto-run on DOMContentLoaded
 if (typeof document !== 'undefined') {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initNavigation);

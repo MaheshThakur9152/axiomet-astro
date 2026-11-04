@@ -4,87 +4,48 @@ interface Props {
 }
 
 const { currentPath = '' } = Astro.props;
-
-const mainPages = [
-  { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/about-us' },
-  { label: 'Services', href: '/service' },
-  { label: 'Case Studies', href: '/case-study-v1' },
-  { label: 'Blog & Insights', href: '/blog' },
-  { label: 'Contact', href: '/contact-v1' },
-];
-
-const capabilities = [
-  { label: 'Technology Strategy', href: '/service/technology-strategy' },
-  { label: 'Systems Engineering', href: '/service/systems-product-engineering' },
-  { label: 'AI & Intelligent Systems', href: '/service/ai-intelligent-systems' },
-  { label: 'Product & Innovation', href: '/service/product-innovation' },
-];
-
-const projects = [
-  { label: 'NeuroLink (Healthcare)', href: '/project/a-smarter-foundation-for-healthcare-data' },
-  { label: 'Brightly (Robotics)', href: '/project/building-intelligence-behind-autonomous' },
-  { label: 'LucenAI (Industry 4.0)', href: '/project/turning-factory-data-into-intelligence' },
-  { label: 'Style Guide', href: '/style-guide' },
-  { label: '404 Page', href: '/404' },
-];
 ---
 
-<div class="nav-menu-panel-container">
+<nav role="navigation" class="nav-menu w-nav-menu">
   <div class="nav-menu-panel">
     <div class="navigation-var-main">
       <div class="nav-menu-left">
         <div class="nav-menu-wrapper">
-          
           <div class="nav-menu-group">
             <div class="menu-text">Main pages</div>
             <div class="nav-menu-main">
-              {mainPages.map((page) => (
-                <a
-                  href={page.href}
-                  class:list={['nav-link', { 'w--current': currentPath === page.href }]}
-                  aria-current={currentPath === page.href ? 'page' : undefined}
-                >
-                  {page.label}
-                </a>
-              ))}
+              <a href="/" class:list={['nav-link', { 'w--current': currentPath === '/' }]}>Home V1</a>
+              <a href="/home-v2" class:list={['nav-link', { 'w--current': currentPath === '/home-v2' }]}>Home V2</a>
+              <a href="/home-v3" class:list={['nav-link', { 'w--current': currentPath === '/home-v3' }]}>Home V3</a>
+              <a href="/case-study-v1" class:list={['nav-link', { 'w--current': currentPath === '/case-study-v1' }]}>Case Studies V1</a>
+              <a href="/case-study-v2" class:list={['nav-link', { 'w--current': currentPath === '/case-study-v2' }]}>Case Studies V2</a>
+              <a href="/case-study-v3" class:list={['nav-link', { 'w--current': currentPath === '/case-study-v3' }]}>Case Studies V3</a>
             </div>
           </div>
-
           <div class="nav-menu-group">
-            <div class="menu-text">Core Capabilities</div>
+            <div class="menu-text">Single pages</div>
             <div class="nav-menu-main">
-              {capabilities.map((cap) => (
-                <a
-                  href={cap.href}
-                  class:list={['nav-link', { 'w--current': currentPath === cap.href }]}
-                  aria-current={currentPath === cap.href ? 'page' : undefined}
-                >
-                  {cap.label}
-                </a>
-              ))}
+              <a href="/about-us" class:list={['nav-link', { 'w--current': currentPath === '/about-us' }]}>About</a>
+              <a href="/service" class:list={['nav-link', { 'w--current': currentPath === '/service' }]}>Service</a>
+              <a href="/blog" class:list={['nav-link', { 'w--current': currentPath === '/blog' }]}>Blog</a>
+              <a href="/contact-v1" class:list={['nav-link', { 'w--current': currentPath === '/contact-v1' }]}>Contact V1</a>
+              <a href="/contact-v2" class:list={['nav-link', { 'w--current': currentPath === '/contact-v2' }]}>Contact V2</a>
+              <a href="/contact-v3" class:list={['nav-link', { 'w--current': currentPath === '/contact-v3' }]}>Contact V3</a>
             </div>
           </div>
-
           <div class="nav-menu-group">
-            <div class="menu-text">Projects & Utilities</div>
+            <div class="menu-text">Utility Pages</div>
             <div class="nav-menu-main">
-              {projects.map((proj) => (
-                <a
-                  href={proj.href}
-                  class:list={['nav-link', { 'w--current': currentPath === proj.href }]}
-                  aria-current={currentPath === proj.href ? 'page' : undefined}
-                >
-                  {proj.label}
-                </a>
-              ))}
+              <a href="/style-guide" class:list={['nav-link', { 'w--current': currentPath === '/style-guide' }]}>Style Guide</a>
+              <a href="/licenses" class:list={['nav-link', { 'w--current': currentPath === '/licenses' }]}>License</a>
+              <a href="/changelog" class:list={['nav-link', { 'w--current': currentPath === '/changelog' }]}>Change Log</a>
+              <a href="/404" class:list={['nav-link', { 'w--current': currentPath === '/404' }]}>404</a>
             </div>
           </div>
-
         </div>
         <div class="dropdown-menu-line"></div>
+        <div class="nav-left-bottom"></div>
       </div>
-
       <div class="nav-menu-right">
         <div class="dropdown-right-top">
           <a href="/" class="dropdown-brand-link w-inline-block">
@@ -95,111 +56,19 @@ const projects = [
               class="menu-brand-logo"
             />
           </a>
-          <div class="menu-description">High-Tech Consulting &amp; Systems Engineering</div>
+          <div class="menu-description">High-Tech Consulting &amp; Engineering</div>
           <a href="/contact-v1" class="btn right w-inline-block">
-            <div>Start a Project</div>
+            <div>Contact Us</div>
           </a>
         </div>
         <img
           src="/images/6ac88e003ea9e2ed4ed9d3e9_Home%20(1).webp"
           loading="lazy"
-          alt="Axiomet engineers"
-          class="dropdown-image"
+          sizes="100vw"
+          alt="Two men in business attire looking at a laptop screen together in a modern office"
+          class="menu-right-image"
         />
       </div>
-
     </div>
   </div>
-</div>
-
-<style>
-  .nav-menu-panel-container {
-    max-height: 0;
-    opacity: 0;
-    visibility: hidden;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-  }
-  .nav-menu-panel {
-    background-color: var(--color-surface-dark, #141414);
-    border: 1px solid var(--color-border-dark, #272523);
-    border-radius: 1.25rem;
-    padding: 2rem;
-    margin-top: 0.5rem;
-  }
-  .navigation-var-main {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
-  }
-  .nav-menu-wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-  .nav-menu-group .menu-text {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-text-muted, #8e8e8e);
-    margin-bottom: 1rem;
-    font-weight: 600;
-  }
-  .nav-menu-main {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  .nav-link {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 0.9375rem;
-    transition: color 0.2s ease;
-  }
-  .nav-link:hover, .nav-link.w--current {
-    color: var(--color-primary-red, #df1001);
-  }
-  .nav-menu-right {
-    background-color: var(--color-surface-subtle, #181615);
-    border: 1px solid var(--color-border-dark, #272523);
-    border-radius: 0.875rem;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .menu-brand-logo {
-    height: 1.5rem;
-    width: auto;
-    margin-bottom: 0.75rem;
-  }
-  .menu-description {
-    font-size: 0.875rem;
-    color: var(--color-text-muted, #8e8e8e);
-    margin-bottom: 1.25rem;
-  }
-  .dropdown-image {
-    width: 100%;
-    height: 9rem;
-    object-fit: cover;
-    border-radius: 0.5rem;
-    border: 1px solid var(--color-border-dark, #272523);
-    margin-top: 1rem;
-  }
-  @media (max-width: 991px) {
-    .navigation-var-main {
-      grid-template-columns: 1fr;
-    }
-    .nav-menu-wrapper {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (max-width: 640px) {
-    .nav-menu-wrapper {
-      grid-template-columns: 1fr;
-    }
-    .nav-menu-panel {
-      padding: 1.25rem;
-    }
-  }
-</style>
+</nav>

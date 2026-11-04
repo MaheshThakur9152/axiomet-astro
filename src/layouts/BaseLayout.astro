@@ -7,14 +7,12 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
-  hideFooterCta?: boolean;
 }
 
 const {
   title = 'Axiomet - Complex problems. Clear solutions.',
   description = 'Turning complex technology challenges into measurable progress, stronger systems, and lasting business impact.',
   ogImage = '/images/6ac88e003ea9e2ed4ed9d3e9_Home%20(1).webp',
-  hideFooterCta = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://axiomet.consulting');
@@ -57,12 +55,12 @@ const fullTitle = title.includes('Axiomet') ? title : `${title} | Axiomet`;
       rel="stylesheet"
     />
   </head>
-  <body class="bg-[#0f0d0b] text-[#f8f9fa] flex flex-col min-h-screen">
+  <body class="bg-[#0f0d0b] text-[#f8f9fa]">
     <Header />
-    <main class="flex-1" id="main-content">
+    <main id="main-content">
       <slot />
     </main>
-    <Footer hideCta={hideFooterCta} />
+    <Footer />
 
     <!-- Client-side interaction scripts -->
     <script src="../scripts/navigation.ts"></script>
