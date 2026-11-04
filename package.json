@@ -1,0 +1,21 @@
+{
+  "name": "axiomet-astro",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "High-fidelity production Astro rebuild of Axiomet",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^7.4.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.8.2"
+  }
+}

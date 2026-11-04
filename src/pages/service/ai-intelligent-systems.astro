@@ -1,0 +1,14 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import pagesData from '@/data/pages_html.json';
+
+const pageKey = 'service-ai-intelligent-systems';
+const htmlContent = (pagesData as Record<string, string>)[pageKey] || '';
+---
+
+<BaseLayout
+  title="AI & Intelligent Systems | Axiomet"
+  description="Model evaluation, data platforms, operational guardrails."
+>
+  <div class="webflow-content overflow-hidden" set:html={htmlContent} />
+</BaseLayout>

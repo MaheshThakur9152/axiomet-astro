@@ -1,0 +1,14 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import pagesData from '@/data/pages_html.json';
+
+const pageKey = 'style-guide';
+const htmlContent = (pagesData as Record<string, string>)[pageKey] || '';
+---
+
+<BaseLayout
+  title="Style Guide | Axiomet"
+  description="Design tokens, typography scale, buttons, and form styles."
+>
+  <div class="webflow-content overflow-hidden" set:html={htmlContent} />
+</BaseLayout>

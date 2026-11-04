@@ -1,0 +1,52 @@
+---
+interface Props {
+  class?: string;
+  size?: 'default' | 'narrow' | 'wide' | 'full';
+  as?: string;
+}
+
+const {
+  class: className = '',
+  size = 'default',
+  as: Component = 'div'
+} = Astro.props;
+---
+
+<Component
+  class:list={[
+    'container',
+    'w-container',
+    `container-${size}`,
+    className
+  ]}
+>
+  <slot />
+</Component>
+
+<style>
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .container-default {
+    max-width: 87rem; /* 1392px */
+  }
+  .container-narrow {
+    max-width: 64rem; /* 1024px */
+  }
+  .container-wide {
+    max-width: 96rem; /* 1536px */
+  }
+  .container-full {
+    max-width: 100%;
+  }
+  @media (max-width: 640px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+</style>

@@ -1,0 +1,141 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  id?: string;
+}
+
+const {
+  eyebrow = 'START A CONVERSATION',
+  title = 'Tell us what you’re working on.',
+  description = 'Give us a look at the challenge you’re facing, and let’s explore what the right solution could look like.',
+  id = 'contact-section'
+} = Astro.props;
+---
+
+<section id={id} class="section black-800">
+  <div class="section-gap">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="contact-wrap">
+        
+        <!-- Header -->
+        <div class="section-header impact-v2">
+          <div class="section-badge">
+            <div class="pill-dot"></div>
+            <div class="badge-text">{eyebrow}</div>
+          </div>
+          <div class="max-width-38">
+            <h2 class="section-heading">{title}</h2>
+          </div>
+          <p to-top-2="" class="font-regular contact-head">{description}</p>
+        </div>
+
+        <!-- Form Card -->
+        <div class="contact-form-wrap">
+          <div to-top-0="" class="contact-form-card">
+            <div class="contact-form-block w-form">
+              <form id="contact-form" name="contact-form" class="contact-form" method="POST">
+                <div class="contact-form-fields">
+                  
+                  <div class="contact-form-row">
+                    <div class="contact-form-field">
+                      <label for="first-name" class="contact-form-label">First Name *</label>
+                      <input
+                        type="text"
+                        id="first-name"
+                        name="firstName"
+                        class="contact-form-input w-input"
+                        placeholder="Alex"
+                        required
+                      />
+                    </div>
+                    <div class="contact-form-field">
+                      <label for="last-name" class="contact-form-label">Last Name *</label>
+                      <input
+                        type="text"
+                        id="last-name"
+                        name="lastName"
+                        class="contact-form-input w-input"
+                        placeholder="Vance"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="contact-form-field">
+                    <label for="work-email" class="contact-form-label">Work Email *</label>
+                    <input
+                      type="email"
+                      id="work-email"
+                      name="email"
+                      class="contact-form-input w-input"
+                      placeholder="alex@company.com"
+                      required
+                    />
+                  </div>
+
+                  <div class="contact-form-field">
+                    <label for="company" class="contact-form-label">Company Name</label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      class="contact-form-input w-input"
+                      placeholder="Company or Organization"
+                    />
+                  </div>
+
+                  <div class="contact-form-field">
+                    <label for="project-type" class="contact-form-label">Project Type *</label>
+                    <div class="contact-select-wrap">
+                      <select id="project-type" name="projectType" required class="contact-form-input select w-select">
+                        <option value="">Select a project focus</option>
+                        <option value="Technology Strategy">Technology Strategy</option>
+                        <option value="Systems & Product Engineering">Systems &amp; Product Engineering</option>
+                        <option value="AI & Intelligent Systems">AI &amp; Intelligent Systems</option>
+                        <option value="Product & Innovation">Product &amp; Innovation</option>
+                        <option value="Other">Other Strategic Initiative</option>
+                      </select>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" class="contact-select-icon" aria-hidden="true">
+                        <path d="M5.66667 7.99951L9.83333 12.1662L14 7.99951" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <div class="contact-form-field">
+                    <label for="message" class="contact-form-label">Project Details *</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      required
+                      placeholder="What are you trying to build, solve, or improve?"
+                      maxlength="5000"
+                      class="contact-form-input textarea w-input"
+                      rows="4"
+                    ></textarea>
+                  </div>
+
+                  <div class="font-small">
+                    We’ll review your message and get back to you within 1–2 business days.
+                  </div>
+                </div>
+
+                <div class="contact-submit-wrap">
+                  <button type="submit" class="primary-button contact-submit w-button">
+                    <span>Send Project Inquiry</span>
+                  </button>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 20 20" fill="none" class="button-arrow contact-submit" aria-hidden="true">
+                    <path d="M15.8333 12.5002H9.99992H3.33325L3.33325 5.8335V5.3335" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M12.5 16.6668L16.6667 12.5002L12.5 8.3335" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

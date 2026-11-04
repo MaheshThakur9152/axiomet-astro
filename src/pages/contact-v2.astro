@@ -1,0 +1,14 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import pagesData from '@/data/pages_html.json';
+
+const pageKey = 'contact-v2';
+const htmlContent = (pagesData as Record<string, string>)[pageKey] || '';
+---
+
+<BaseLayout
+  title="Contact Us V2 | Axiomet"
+  description="Have a complex problem? Let’s work through it."
+>
+  <div class="webflow-content overflow-hidden" set:html={htmlContent} />
+</BaseLayout>

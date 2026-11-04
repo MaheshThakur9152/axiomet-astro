@@ -1,0 +1,14 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import pagesData from '@/data/pages_html.json';
+
+const pageKey = 'project-building-intelligence-behind-autonomous';
+const htmlContent = (pagesData as Record<string, string>)[pageKey] || '';
+---
+
+<BaseLayout
+  title="Brightly Case Study: AI for Autonomous Robots | Axiomet"
+  description="99.9% uptime autonomy in real-world environments."
+>
+  <div class="webflow-content overflow-hidden" set:html={htmlContent} />
+</BaseLayout>

@@ -1,0 +1,14 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import pagesData from '@/data/pages_html.json';
+
+const pageKey = 'licenses';
+const htmlContent = (pagesData as Record<string, string>)[pageKey] || '';
+---
+
+<BaseLayout
+  title="Licenses | Axiomet"
+  description="Asset licenses and attributions."
+>
+  <div class="webflow-content overflow-hidden" set:html={htmlContent} />
+</BaseLayout>

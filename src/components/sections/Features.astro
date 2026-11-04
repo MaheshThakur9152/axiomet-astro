@@ -1,0 +1,139 @@
+---
+interface CapabilityItem {
+  id: string;
+  number: string;
+  title: string;
+  href: string;
+  description: string;
+  imageSrc: string;
+  imageAlt?: string;
+  tags: string[];
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  capabilities?: CapabilityItem[];
+}
+
+const defaultCapabilities: CapabilityItem[] = [
+  {
+    id: 'Strategy',
+    number: '01',
+    title: 'Technology Strategy',
+    href: '/service/technology-strategy',
+    description: 'Define the right direction before investing time, money, and resources.',
+    imageSrc: '/images/6ae1a0fb39f2b77a563a8960_Frame%202147227629%20(10).webp',
+    imageAlt: 'Technology Strategy consulting diagram',
+    tags: ['technology-strategy', 'Product Strategy', 'Digital Transformation', 'Innovation Planning']
+  },
+  {
+    id: 'Engineering',
+    number: '02',
+    title: 'Systems & Product Engineering',
+    href: '/service/systems-product-engineering',
+    description: 'Turn ambitious concepts into reliable, scalable systems and products.',
+    imageSrc: '/images/6ac5e3c331095f8f8bf64f59_Frame%202147227629%20(1).webp',
+    imageAlt: 'Systems engineering technical blueprint',
+    tags: ['systems-product-engineering', 'Product Development', 'Engineering Optimization', 'Technical Prototyping']
+  },
+  {
+    id: 'Intelligence',
+    number: '03',
+    title: 'AI & Intelligent Systems',
+    href: '/service/ai-intelligent-systems',
+    description: 'Use AI, automation, and data to make complex systems smarter and more efficient.',
+    imageSrc: '/images/6ae1a0a4a5a6c7a174b60ee0_Frame%202147227629%20(9).webp',
+    imageAlt: 'AI and neural architecture platform',
+    tags: ['ai-intelligent-systems', 'Machine Learning', 'Automation', 'Data Intelligence']
+  }
+];
+
+const {
+  eyebrow = 'Our core capabilities',
+  title = 'From difficult questions to working solutions.',
+  description = "We combine strategic thinking, engineering expertise, and intelligent technology to solve problems that don't have simple answers.",
+  capabilities = defaultCapabilities
+} = Astro.props;
+---
+
+<section class="section black-800">
+  <div class="section-gap">
+    <div class="w-layout-blockcontainer container w-container">
+      
+      <!-- Section Header -->
+      <div class="service-header">
+        <div class="section-badge">
+          <div class="pill-dot"></div>
+          <div class="badge-text">{eyebrow}</div>
+        </div>
+        <div class="service-header-right">
+          <div class="max-width-38">
+            <h2 class="section-heading">{title}</h2>
+          </div>
+          <div class="max-width-28">
+            <p class="paragraph-regular">{description}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Capabilities Grid & Anchor Navigation -->
+      <div class="service-wrapper">
+        <div class="service-left-main">
+          <div class="service-left">
+            {capabilities.map((cap) => (
+              <a href={`#${cap.id}`} class="service-link w-inline-block">
+                <div>{cap.number}. {cap.id}</div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div class="service-list">
+          {capabilities.map((cap) => (
+            <div id={cap.id} class="service-block">
+              <div class="w-dyn-list">
+                <div role="list" class="w-dyn-items">
+                  <div role="listitem" class="w-dyn-item">
+                    <div data-to-top="0" class="service-card">
+                      <a href={cap.href} class="service-card-image-wrap w-inline-block">
+                        <img
+                          src={cap.imageSrc}
+                          loading="lazy"
+                          alt={cap.imageAlt || cap.title}
+                          class="service-image"
+                        />
+                      </a>
+                      <div class="service-card-info-wrap">
+                        <div class="service-info-top">
+                          <div class="service-number-wrap">
+                            <div class="font-extra-small">{cap.number}</div>
+                          </div>
+                          <a href={cap.href} class="service-title-link w-inline-block">
+                            <div>{cap.title}</div>
+                            <div class="demo">#</div>
+                          </a>
+                          <p class="paragraph-regular">{cap.description}</p>
+                        </div>
+                        <div class="service-info-list">
+                          {cap.tags.map((tag) => (
+                            <div class="service-info-list-item">
+                              <div class="pill-dot"></div>
+                              <div class="service-list-text">{tag}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

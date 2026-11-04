@@ -1,0 +1,119 @@
+---
+import Navigation from './Navigation.astro';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+---
+
+<header class="navber w-nav relative z-50" role="banner">
+  <div class="container w-container">
+    <div class="nav-item-wrap">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="w-nav-brand" aria-label="Axiomet Home">
+        <img
+          src="/images/6ac4a7f1eb79ec44d798a8c8_Frame%2016.webp"
+          alt="Axiomet logo"
+          class="brand-logo"
+          width="130"
+          height="28"
+          loading="eager"
+        />
+      </a>
+
+      <!-- Menu Button -->
+      <div class="nav-right">
+        <button
+          type="button"
+          class="menu-button w-nav-button"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+        >
+          <div class="div-block">
+            <div class="menu-dots" aria-hidden="true">
+              <span class="menu-dot"></span>
+              <span class="menu-dot"></span>
+              <span class="menu-dot"></span>
+              <span class="menu-dot"></span>
+            </div>
+            <div class="menu-text-wrap">
+              <span class="nav-menu-text">Menu</span>
+            </div>
+          </div>
+          <div class="menu-blur"></div>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Dropdown Navigation Panel -->
+    <Navigation currentPath={currentPath} />
+
+  </div>
+</header>
+
+<style>
+  .navber {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: rgba(15, 13, 11, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(39, 37, 35, 0.7);
+    z-index: 1000;
+  }
+  .nav-item-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+  }
+  .brand-logo {
+    height: 1.75rem;
+    width: auto;
+    display: block;
+  }
+  .menu-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 0.875rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s ease;
+  }
+  .menu-button:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  .div-block {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .menu-dots {
+    display: grid;
+    grid-template-columns: repeat(2, 4px);
+    gap: 3px;
+    width: 11px;
+    height: 11px;
+  }
+  .menu-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    transition: background-color 0.25s ease;
+  }
+  .nav-menu-text {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    color: #ffffff;
+  }
+</style>

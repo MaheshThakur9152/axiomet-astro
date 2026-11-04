@@ -1,0 +1,113 @@
+---
+interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  testimonials?: Testimonial[];
+}
+
+const defaultTestimonials: Testimonial[] = [
+  {
+    quote: 'We came in with a complex challenge and no clear plan. By stepping back to understand the real problem, AXIOMET gave us a clear, practical technical roadmap our entire team could act on.',
+    name: 'Daniel Mercer',
+    role: 'VP of Product, Nova Systems'
+  },
+  {
+    quote: 'Our AI roadmap finally has real structure. The team challenged our assumptions, designed an architecture we trust, and helped our engineers ship faster than we had planned.',
+    name: 'Savannah Nguyen',
+    role: 'CEO of Brightly'
+  },
+  {
+    quote: 'For the first time, all of our manufacturing data tells one story. Disconnected systems became a single reliable platform, and our operations team finally has insight it can act on.',
+    name: 'Marcus Ellison',
+    role: 'COO, StratoLink Industries'
+  }
+];
+
+const {
+  eyebrow = 'Testimonials',
+  title = 'Trusted by Teams Solving Complex Problems.',
+  description = 'From technology strategy to intelligent systems, we work alongside ambitious teams to turn difficult challenges into meaningful progress.',
+  testimonials = defaultTestimonials
+} = Astro.props;
+---
+
+<section class="section">
+  <div class="section-gap">
+    <div class="w-layout-blockcontainer container w-container">
+      
+      <!-- Section Header -->
+      <div class="section-header left">
+        <div class="section-badge">
+          <div class="pill-dot"></div>
+          <div class="badge-text">{eyebrow}</div>
+        </div>
+        <div class="max-width-42">
+          <h2 class="section-heading small">{title}</h2>
+        </div>
+        <div class="max-width-28">
+          <p class="paragraph-regular">{description}</p>
+        </div>
+      </div>
+
+      <!-- Testimonial Cards Grid -->
+      <div class="testimonials-grid">
+        {testimonials.map((t) => (
+          <div class="testimonial-card">
+            <div class="testimonial-quote-wrap">
+              <p class="testimonial-quote">“{t.quote}”</p>
+            </div>
+            <div class="testimonial-author-wrap">
+              <div class="font-medium text-white">{t.name}</div>
+              <div class="font-small text-muted">{t.role}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .testimonial-card {
+    background-color: var(--color-surface-subtle, #181615);
+    border: 1px solid var(--color-border-dark, #272523);
+    border-radius: 1.25rem;
+    padding: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .testimonial-quote {
+    color: var(--color-text-body, #b7bdc2);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .text-white {
+    color: #ffffff;
+  }
+  .text-muted {
+    color: var(--color-text-muted, #8e8e8e);
+    margin-top: 0.25rem;
+  }
+  @media (max-width: 991px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,138 @@
+---
+interface Props {
+  eyebrow?: string;
+  statement?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const {
+  eyebrow = 'The AXIOMET approach',
+  statement = 'AXIOMET works at the intersection of technology, engineering, and business strategy helping ambitious teams make better decisions, build smarter systems, and move from uncertainty to execution.',
+  imageSrc = '/images/6ac4bef170031f5760f33be4_Rectangle%2010%20(2).webp',
+  imageAlt = 'Two professionals collaborating on strategy in a modern office',
+  ctaText = 'Learn More',
+  ctaLink = '/about-us'
+} = Astro.props;
+
+const pillars = [
+  {
+    title: 'Think clearly',
+    description: 'We turn complex challenges into clear opportunities.',
+    icon: 'cross'
+  },
+  {
+    title: 'Build precisely',
+    description: 'We convert strategy into reliable systems and products.',
+    icon: 'circle'
+  },
+  {
+    title: 'Scale intelligently',
+    description: 'We design tech for growth, adaptability, and performance.',
+    icon: 'grid'
+  }
+];
+---
+
+<section class="section">
+  <div class="section-gap">
+    <div class="w-layout-blockcontainer container w-container">
+      <div class="about-wrapper">
+        
+        <!-- Left: Badge and Media -->
+        <div class="about-left">
+          <div data-to-top="0" class="section-badge">
+            <div class="pill-dot"></div>
+            <div class="badge-text">{eyebrow}</div>
+          </div>
+          <div data-to-top="0" class="about-image-wrap">
+            <img
+              class="about-image"
+              src={imageSrc}
+              alt={imageAlt}
+              sizes="100vw"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <!-- Right: Statement, CTA, and 3 Pillars -->
+        <div class="about-right">
+          <div class="rebuild-text-wrap">
+            <div class="about-rebuild-text">
+              {statement}
+            </div>
+            <div data-to-top="0">
+              <a href={ctaLink} class="blog-button w-inline-block">
+                <div class="blog-button-item home-hero">
+                  <div class="button-text-pill">
+                    <div class="work-button-text is-one">{ctaText}</div>
+                    <div class="work-button-text is-two">{ctaText}</div>
+                  </div>
+                  <div class="button-arrow-wrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 20 20" fill="none" class="button-arrow">
+                      <path d="M15.8335 12.4997H10.0002H3.3335L3.3335 5.83301V5.33301" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M12.5 16.6663L16.6667 12.4997L12.5 8.33301" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 20 20" fill="none" class="button-arrow">
+                      <path d="M15.8335 12.4997H10.0002H3.3335L3.3335 5.83301V5.33301" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M12.5 16.6663L16.6667 12.4997L12.5 8.33301" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="button-line"></div>
+              </a>
+            </div>
+          </div>
+
+          <!-- 3 Stats/Pillar Cards -->
+          <div class="w-layout-grid about-stats-grid">
+            <div data-to-top="2" class="about-stats-card">
+              <div class="about-icon-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 16 16" fill="none" class="about-card-icon">
+                  <path d="M7.99927 0V16" stroke="currentColor"></path>
+                  <path d="M13.6562 2.34277L2.34254 13.6565" stroke="currentColor"></path>
+                  <path d="M16 7.99902L-3.12924e-07 7.99902" stroke="currentColor"></path>
+                  <path d="M13.6575 13.6562L2.34376 2.34254" stroke="currentColor"></path>
+                </svg>
+              </div>
+              <div class="about-card-info-wrap">
+                <div class="font-extra-normal">{pillars[0].title}</div>
+                <p class="font-small">{pillars[0].description}</p>
+              </div>
+            </div>
+
+            <div data-to-top="4" class="about-stats-card">
+              <div class="about-icon-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 20 19" fill="none" class="about-card-icon">
+                  <circle cx="10" cy="9.5" r="8" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                  <circle cx="10" cy="9.5" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+              <div class="about-card-info-wrap">
+                <div class="font-extra-normal">{pillars[1].title}</div>
+                <p class="font-small">{pillars[1].description}</p>
+              </div>
+            </div>
+
+            <div data-to-top="6" class="about-stats-card">
+              <div class="about-icon-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 16 16" fill="none" class="about-card-icon">
+                  <path d="M0 0H7V7H0V0ZM9 0H16V7H9V0ZM0 9H7V16H0V9ZM9 9H16V16H9V9Z" stroke="currentColor" stroke-width="1.2" fill="none"></path>
+                </svg>
+              </div>
+              <div class="about-card-info-wrap">
+                <div class="font-extra-normal">{pillars[2].title}</div>
+                <p class="font-small">{pillars[2].description}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

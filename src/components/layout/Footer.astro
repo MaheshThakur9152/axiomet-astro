@@ -1,0 +1,311 @@
+---
+interface Props {
+  hideCta?: boolean;
+}
+
+const { hideCta = false } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="section footer" role="contentinfo">
+  <div class="container w-container">
+    
+    {!hideCta && (
+      <div class="cta-card">
+        <div class="cta-content">
+          <div class="cta-badge">
+            <span class="cta-badge-dot"></span>
+            Let's Connect
+          </div>
+          <h2 class="cta-title">
+            Have a complex problem? <br class="hidden-xs" />
+            <span class="text-muted">Let’s work through it.</span>
+          </h2>
+          <p class="cta-description">
+            Connect directly with our engineering and strategy leads to explore architecture, feasibility, and implementation paths.
+          </p>
+        </div>
+        <a href="/contact-v1" class="btn primary-btn group">
+          <span>Start a Project</span>
+          <svg
+            class="cta-arrow"
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+    )}
+
+    <div class="footer-grid">
+      
+      <!-- Brand Summary -->
+      <div class="footer-left">
+        <a href="/" class="footer-brand-link" aria-label="Axiomet Home">
+          <img
+            src="/images/6ac4a7f1eb79ec44d798a8c8_Frame%2016.webp"
+            alt="Axiomet"
+            class="brand-logo"
+            width="130"
+            height="28"
+            loading="lazy"
+          />
+        </a>
+        <p class="footer-summary">
+          We help ambitious teams turn complex challenges into clear strategies, intelligent systems, and scalable solutions.
+        </p>
+        <div class="footer-contact">
+          <div class="office-location">San Francisco • London • Singapore</div>
+          <a href="mailto:hello@axiomet.consulting" class="contact-email">hello@axiomet.consulting</a>
+        </div>
+      </div>
+
+      <!-- Column: Explore -->
+      <div class="footer-col">
+        <div class="footer-menu-heading">Explore</div>
+        <ul class="footer-links">
+          <li><a href="/" class="footer-link">Home</a></li>
+          <li><a href="/about-us" class="footer-link">About Us</a></li>
+          <li><a href="/service" class="footer-link">Services</a></li>
+          <li><a href="/case-study-v1" class="footer-link">Case Studies</a></li>
+          <li><a href="/blog" class="footer-link">Insights</a></li>
+          <li><a href="/contact-v1" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Column: Services -->
+      <div class="footer-col">
+        <div class="footer-menu-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="/service/technology-strategy" class="footer-link">Technology Strategy</a></li>
+          <li><a href="/service/systems-product-engineering" class="footer-link">Systems &amp; Product</a></li>
+          <li><a href="/service/ai-intelligent-systems" class="footer-link">AI &amp; Intelligent Systems</a></li>
+          <li><a href="/service/product-innovation" class="footer-link">Product &amp; Innovation</a></li>
+        </ul>
+      </div>
+
+      <!-- Column: Utilities -->
+      <div class="footer-col">
+        <div class="footer-menu-heading">Utilities</div>
+        <ul class="footer-links">
+          <li><a href="/style-guide" class="footer-link">Style Guide</a></li>
+          <li><a href="/licenses" class="footer-link">Licenses</a></li>
+          <li><a href="/changelog" class="footer-link">Changelog</a></li>
+          <li><a href="/instructions" class="footer-link">Instructions</a></li>
+          <li><a href="/404" class="footer-link">404 Not Found</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <div class="copyright">
+        © {currentYear} AXIOMET Technologies Inc. All rights reserved.
+      </div>
+      <div class="social-links">
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a>
+        <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-link">X / Twitter</a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link">GitHub</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-bg-dark, #0f0d0b);
+    border-top: 1px solid var(--color-border-dark, #272523);
+    padding: 5rem 0 3rem;
+    color: var(--color-text-heading, #f8f9fa);
+  }
+  .cta-card {
+    background: linear-gradient(135deg, #181615 0%, #141414 100%);
+    border: 1px solid var(--color-border-dark, #272523);
+    border-radius: 1.25rem;
+    padding: 3.5rem;
+    margin-bottom: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+  }
+  .cta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(223, 16, 1, 0.1);
+    border: 1px solid rgba(223, 16, 1, 0.3);
+    color: var(--color-primary-red, #df1001);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.25rem;
+  }
+  .cta-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-primary-red, #df1001);
+  }
+  .cta-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    color: #ffffff;
+  }
+  .text-muted {
+    color: var(--color-text-muted, #8e8e8e);
+  }
+  .cta-description {
+    font-size: 1rem;
+    color: var(--color-text-body, #b7bdc2);
+    max-width: 38rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .primary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background-color: var(--color-primary-red, #df1001);
+    color: #ffffff;
+    font-weight: 500;
+    border-radius: 9999px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+    box-shadow: 0 10px 25px rgba(223, 16, 1, 0.25);
+  }
+  .primary-btn:hover {
+    background-color: var(--color-primary-red-hover, #ff2616);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 28px rgba(223, 16, 1, 0.35);
+  }
+  .cta-arrow {
+    transition: transform 0.2s ease;
+  }
+  .primary-btn:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.2fr 1fr;
+    gap: 3rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid var(--color-border-dark, #272523);
+  }
+  .footer-brand-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+  .footer-summary {
+    font-size: 0.875rem;
+    color: var(--color-text-muted, #8e8e8e);
+    line-height: 1.6;
+    max-width: 24rem;
+    margin-bottom: 1.75rem;
+  }
+  .office-location {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+  }
+  .contact-email {
+    font-size: 0.875rem;
+    color: var(--color-text-body, #b7bdc2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-email:hover {
+    color: var(--color-primary-red, #df1001);
+  }
+  .footer-menu-heading {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted, #8e8e8e);
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .footer-link {
+    color: #c2c7cc;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+  .footer-link:hover {
+    color: var(--color-primary-red, #df1001);
+  }
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 2rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted, #8e8e8e);
+  }
+  .social-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .social-link {
+    color: var(--color-text-muted, #8e8e8e);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .social-link:hover {
+    color: #ffffff;
+  }
+
+  @media (max-width: 991px) {
+    .cta-card {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 2.5rem;
+    }
+    .cta-title {
+      font-size: 2rem;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cta-card {
+      padding: 1.75rem;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
+</style>

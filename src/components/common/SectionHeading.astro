@@ -1,0 +1,89 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  align?: 'left' | 'center' | 'right';
+  class?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  align = 'left',
+  class: className = ''
+} = Astro.props;
+---
+
+<div class:list={['section-heading-wrap', `align-${align}`, className]}>
+  {eyebrow && (
+    <div class="eyebrow-pill">
+      <span class="eyebrow-dot"></span>
+      <span>{eyebrow}</span>
+    </div>
+  )}
+  <h2 class="heading-title">{title}</h2>
+  {description && <p class="heading-description">{description}</p>}
+</div>
+
+<style>
+  .section-heading-wrap {
+    margin-bottom: 3.5rem;
+  }
+  .align-center {
+    text-align: center;
+  }
+  .align-center .eyebrow-pill {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .align-center .heading-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .align-right {
+    text-align: right;
+  }
+  .eyebrow-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(223, 16, 1, 0.1);
+    border: 1px solid rgba(223, 16, 1, 0.3);
+    color: var(--color-primary-red, #df1001);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+  .eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-primary-red, #df1001);
+  }
+  .heading-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    color: #ffffff;
+  }
+  .heading-description {
+    font-size: 1.0625rem;
+    color: var(--color-text-body, #b7bdc2);
+    max-width: 42rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+  @media (max-width: 767px) {
+    .heading-title {
+      font-size: 1.875rem;
+    }
+  }
+</style>
