@@ -7,20 +7,24 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  hideHeader?: boolean;
+  hideFooter?: boolean;
 }
 
 const {
-  title = 'Axiomet - Complex problems. Clear solutions.',
+  title = 'Anantacast - Complex problems. Clear solutions.',
   description = 'Turning complex technology challenges into measurable progress, stronger systems, and lasting business impact.',
-  ogImage = '/images/6ac88e003ea9e2ed4ed9d3e9_Home%20(1).webp',
+  ogImage = '/images/6ace2fd4032dc020d326331a_eea90ebed600dcaaf93d357b1fbaf60e_open%20graph%20image%20%281200x630%29.webp',
+  hideHeader = false,
+  hideFooter = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://axiomet.consulting');
-const fullTitle = title.includes('Axiomet') ? title : `${title} | Axiomet`;
+const fullTitle = title.includes('Anantacast') ? title : `${title} | Anantacast`;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="w-mod-js w-mod-ix">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,7 +51,7 @@ const fullTitle = title.includes('Axiomet') ? title : `${title} | Axiomet`;
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImage} />
 
-    <!-- Google Fonts Preconnect -->
+    <!-- Google Fonts Preconnect & Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -56,15 +60,23 @@ const fullTitle = title.includes('Axiomet') ? title : `${title} | Axiomet`;
     />
   </head>
   <body class="bg-[#0f0d0b] text-[#f8f9fa]">
-    <Header />
-    <main id="main-content">
+    <div class="page-wrapper">
+      {!hideHeader && <Header />}
       <slot />
-    </main>
-    <Footer />
+      {!hideFooter && <Footer />}
+    </div>
 
-    <!-- Client-side interaction scripts -->
+    <!-- Animation & Webflow Interaction Libraries (Local) -->
+    <script is:inline src="/js/jquery.min.js"></script>
+    <script is:inline src="/js/gsap.min.js"></script>
+    <script is:inline src="/js/ScrollTrigger.min.js"></script>
+    <script is:inline src="/js/SplitText.min.js"></script>
+    <script is:inline src="/js/webflow.chunk1.js"></script>
+    <script is:inline src="/js/webflow.chunk2.js"></script>
+    <script is:inline src="/js/webflow.main.js"></script>
+
+    <!-- Client-side navigation & interactions -->
     <script src="../scripts/navigation.ts"></script>
     <script src="../scripts/interactions.ts"></script>
-    <script src="../scripts/animations.ts"></script>
   </body>
 </html>

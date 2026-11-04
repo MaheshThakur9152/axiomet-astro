@@ -3,10 +3,9 @@
 
 declare namespace astroHTML.JSX {
   interface HTMLAttributes {
-    'to-top-0'?: any;
-    'to-top-2'?: any;
-    'to-top-4'?: any;
-    'to-top-6'?: any;
-    'parallax'?: any;
+    [key: string]: any;
+  }
+  interface ImgHTMLAttributes {
+    [key: string]: any;
   }
 }

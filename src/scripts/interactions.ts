@@ -1,23 +1,113 @@
-/**
- * Interactive site behaviors: Accordions, Forms, Smooth Scrolling
- */
+import Lenis from 'lenis';
+
+declare global {
+  interface Window {
+    Webflow?: any;
+    gsap?: any;
+    ScrollTrigger?: any;
+  }
+}
+
+// 1. Initialize Lenis Smooth Scroll
+if (typeof window !== 'undefined') {
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+  });
+
+  function raf(time: number) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+}
+
+// 2. Initialize Webflow IX2 and GSAP Counters
+export function initWebflowAndCounters(): void {
+  try {
+    if (typeof window !== 'undefined' && window.Webflow) {
+      if (window.Webflow.destroy) window.Webflow.destroy();
+      if (window.Webflow.ready) window.Webflow.ready();
+      const ix2 = window.Webflow.require && window.Webflow.require('ix2');
+      if (ix2 && ix2.init) ix2.init();
+    }
+
+    if (typeof window !== 'undefined' && window.gsap && window.ScrollTrigger) {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+
+      document.querySelectorAll('[data-counter]').forEach((counter: any) => {
+        const textNode = [...counter.childNodes].find(
+          (n: any) => n.nodeType === 3 && n.textContent?.trim()
+        );
+        const textEl = textNode || counter.firstElementChild || counter;
+        const original = textEl.textContent?.trim() || '';
+
+        const match = original.match(/^([^0-9.-]*)([0-9.,-]+)(.*)$/);
+        if (!match) return;
+
+        const prefix = match[1];
+        const number = match[2].replace(/,/g, '');
+        const suffix = match[3];
+        const target = parseFloat(number);
+        if (Number.isNaN(target)) return;
+
+        const hasDecimal = number.includes('.');
+        const hasComma = original.includes(',');
+        const value = { current: 0 };
+
+        window.gsap.fromTo(
+          value,
+          { current: 0 },
+          {
+            current: target,
+            duration: 1.8,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: counter,
+              start: 'top 88%',
+              once: true,
+            },
+            onUpdate: () => {
+              let formattedValue = hasDecimal
+                ? value.current.toFixed(1)
+                : Math.floor(value.current);
+
+              if (hasComma && !hasDecimal) {
+                formattedValue = Number(formattedValue).toLocaleString();
+              }
+
+              textEl.textContent = prefix + formattedValue + suffix;
+            },
+          }
+        );
+      });
+
+      window.ScrollTrigger.refresh();
+    }
+  } catch (err) {
+    console.warn('Animation re-init error:', err);
+  }
+}
+
+// 3. Form & Accordion handlers
 export function initInteractions(): void {
-  // 1. FAQ Accordions
+  initWebflowAndCounters();
+
+  // FAQ Accordion fallback
   const faqCards = document.querySelectorAll<HTMLElement>('.faq-card');
   faqCards.forEach((card) => {
-    const trigger = card.querySelector<HTMLElement>('.faq-title-wrap') || card;
+    const trigger = card.querySelector<HTMLElement>('.faq-title-wrap, .faq-card-top') || card;
     const summaryWrap = card.querySelector<HTMLElement>('.faq-summary-wrap');
     const icon = card.querySelector<HTMLElement>('.faq-icon');
 
     if (!summaryWrap) return;
 
     trigger.addEventListener('click', (e) => {
-      // Don't toggle if clicking a link inside
       if ((e.target as HTMLElement).closest('a')) return;
 
       const isCurrentlyOpen = summaryWrap.style.maxHeight && summaryWrap.style.maxHeight !== '0px';
 
-      // Optionally close other accordions in the same list
       const parent = card.closest('.faq-list, .w-dyn-items');
       if (parent) {
         parent.querySelectorAll<HTMLElement>('.faq-card').forEach((otherCard) => {
@@ -47,23 +137,8 @@ export function initInteractions(): void {
     });
   });
 
-  // 2. Smooth Scrolling for Anchor Links
-  document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', (e) => {
-      const href = anchor.getAttribute('href');
-      if (!href || href === '#') return;
-
-      const target = document.querySelector<HTMLElement>(href);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
-  // 3. Contact Form Submission & Project Pill Selector
+  // Contact Form Submission
   document.querySelectorAll<HTMLFormElement>('form').forEach((form) => {
-    // Project type pills
     const pillButtons = form.querySelectorAll<HTMLElement>('[data-project-type], .project-type-pill');
     pillButtons.forEach((pill) => {
       pill.addEventListener('click', () => {
@@ -79,7 +154,6 @@ export function initInteractions(): void {
       });
     });
 
-    // Form submission interception
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
